@@ -1,0 +1,5 @@
+Several assets from the Unity Asset Store were utilized.
+- Lowpoly medieval buildings by Szymon Lukaszuk - Buildings, Castle, Fences, Huts
+- Standard Assets from Unity - Terrain, FirstPersonController
+- Nature Starter Kit 2 by Shapes - Some trees
+- Simple Torch by Axel Vaude - Torches
