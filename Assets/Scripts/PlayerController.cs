@@ -18,12 +18,13 @@ public class PlayerController : MonoBehaviour
 	void Update () 
 	{
 		float xPos = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
+		float yPos = Input.GetAxis("Vertical") * Time.deltaTime * 150.0f;
 		float zPos = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
 
 		transform.Rotate(0, xPos, 0);
 		transform.Translate(0, 0, zPos);
 
-		if(Input.GetKeyDown(KeyCode.Tab))
+		if (Input.GetKeyDown(KeyCode.Tab))
 		{
 			Fire();
 		}
