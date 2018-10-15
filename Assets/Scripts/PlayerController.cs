@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 	// variables
 	public GameObject stakePrefab;
 	public Transform stakeSpawn;
+	public GameObject playerCharacter;
 
 	// Use this for initialization
 	void Start ()
@@ -32,8 +33,12 @@ public class PlayerController : MonoBehaviour
 
 	void Fire()
 	{
+		// create a transform from the stakeSpawn and the playerCharacter
+		Transform stakeRot = stakeSpawn;
+		stakeRot.rotation = playerCharacter.transform.rotation;
+
 		// create a stake from a bullet prefab
-		var stake = (GameObject)Instantiate(stakePrefab, stakeSpawn.position, stakeSpawn.rotation);
+		var stake = (GameObject)Instantiate(stakePrefab, stakeSpawn.position, stakeRot.rotation);
 
 		// add velocity to the stake
 		stake.GetComponent<Rigidbody>().velocity = stake.transform.forward * 15;
