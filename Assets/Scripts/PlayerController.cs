@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 	// variables
 	public GameObject stakePrefab;
 	public Transform stakeSpawn;
+	public GameObject playerCharacter;
 
 	// Use this for initialization
 	void Start ()
@@ -18,12 +19,13 @@ public class PlayerController : MonoBehaviour
 	void Update () 
 	{
 		float xPos = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
+		float yPos = Input.GetAxis("Vertical") * Time.deltaTime * 150.0f;
 		float zPos = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
 
 		transform.Rotate(0, xPos, 0);
 		transform.Translate(0, 0, zPos);
 
-		if(Input.GetKeyDown(KeyCode.Tab))
+		if (Input.GetKeyDown(KeyCode.Tab))
 		{
 			Fire();
 		}
@@ -31,8 +33,12 @@ public class PlayerController : MonoBehaviour
 
 	void Fire()
 	{
+		// create a transform from the stakeSpawn and the playerCharacter
+		Transform stakeRot = stakeSpawn;
+		stakeRot.rotation = playerCharacter.transform.rotation;
+
 		// create a stake from a bullet prefab
-		var stake = (GameObject)Instantiate(stakePrefab, stakeSpawn.position, stakeSpawn.rotation);
+		var stake = (GameObject)Instantiate(stakePrefab, stakeSpawn.position, stakeRot.rotation);
 
 		// add velocity to the stake
 		stake.GetComponent<Rigidbody>().velocity = stake.transform.forward * 15;
