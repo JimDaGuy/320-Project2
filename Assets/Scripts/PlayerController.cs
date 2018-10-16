@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
 		var stake = (GameObject)Instantiate(stakePrefab, stakeSpawn.position, stakeRot.rotation);
 
 		// add velocity to the stake
-		stake.GetComponent<Rigidbody>().velocity = stake.transform.forward * 15;
+		stake.GetComponent<Rigidbody>().velocity = stake.transform.forward * 20;
 		
 
 		// remove stake after 2 seconds
