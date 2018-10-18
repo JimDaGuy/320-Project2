@@ -51,15 +51,9 @@ public abstract class Vehicle : MonoBehaviour
     {
         //grab (relative) start position every frame (for testing different positions inside the running scene)
         position = transform.position;
-        //special case of vehicle falling off the building, disregard movement formula and just let it fall in this case
-        if (position.y < 0)
-        {
-            return;
-        }
         //new movement formula
         velocity += acceleration * Time.deltaTime;
         velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
-        velocity.y = 0;
         position += velocity * Time.deltaTime;
         direction = velocity.normalized;
         acceleration = Vector3.zero;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4487115, g: 0.49508268, b: 0.5559003, a: 1}
+  m_IndirectSpecularColor: {r: 0.4487118, g: 0.49508315, b: 0.55590117, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1368,7 +1368,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4912051900613490, guid: f0bd97bb24ac63842ae567bc740a2af6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.00000011920929
+      value: 2.47
       objectReference: {fileID: 0}
     - target: {fileID: 4912051900613490, guid: f0bd97bb24ac63842ae567bc740a2af6, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1399,10 +1399,6 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 1823839900}
-    - target: {fileID: 1184523553421966, guid: f0bd97bb24ac63842ae567bc740a2af6, type: 2}
-      propertyPath: m_Name
-      value: Vampire
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0bd97bb24ac63842ae567bc740a2af6, type: 2}
   m_IsPrefabAsset: 0
@@ -3055,6 +3051,34 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a3041dcda597954782f48ac8a97bf33, type: 3}
   m_IsPrefabAsset: 0
+--- !u!1 &543574307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 543574308}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Manager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &543574308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 543574307}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5272608, y: 5.51107, z: -2.6542468}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &546621374 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: f19c82e321237da4c8082e78cd6b7ebc,
