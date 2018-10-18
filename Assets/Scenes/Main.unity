@@ -10004,10 +10004,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a529a0d29a456042b3da364bdebc788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stakePrefab: {fileID: 1662248750556072, guid: 9a8ca4d3eeb327c4b98411f8647513a4,
+  stakePrefab_a: {fileID: 1282459986517426, guid: 0a7c2d4723c15fb4696c4d73ae88dc09,
+    type: 2}
+  stakePrefab_b: {fileID: 1530166004133046, guid: 9a8ca4d3eeb327c4b98411f8647513a4,
+    type: 2}
+  stakePrefab_c: {fileID: 1353479244426272, guid: 303bce6d2c5db044d8131eac681a40c9,
     type: 2}
   stakeSpawn: {fileID: 397109983}
   playerCharacter: {fileID: 1891219950}
+  weaponType: 
 --- !u!4 &1823839906 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0,
