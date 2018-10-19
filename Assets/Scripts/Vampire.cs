@@ -10,6 +10,12 @@ public class Vampire : Vehicle
     public Material targetMat;
     public GameObject target;
 
+    // Use this for initialization
+    protected override void Start()
+    {
+        target = GameObject.FindGameObjectWithTag("Player");
+    }
+
     protected override void CalcSteeringForces()
     {
         //find the closest human and hunt them down, paying no mind to building edges
@@ -23,28 +29,25 @@ public class Vampire : Vehicle
         {
             ultimateForce += Wander() * wanderWeight;
         }
-        ////avoid general obstacles only because they're at the zombie's eye level
-        //foreach (GameObject obstacle in Manager.Instance.generalObstacles)
-        //{
-        //    ultimateForce += AvoidObstacle(obstacle.transform.position, Manager.Instance.generalObstacleRadius) * avoidObstacleWeight;
-        //}
+        //avoid obstacles
+        ultimateForce += AvoidObstacles() * avoidObstacleWeight;
         ultimateForce = ultimateForce.normalized * maxForce;
         ApplyForce(ultimateForce);
     }
 
-    //protected override void OnRenderObject()
-    //{
-    //    base.OnRenderObject();
-    //    if(Manager.Instance.debugLines)
-    //    {
-    //        if (target)
-    //        {
-    //            targetMat.SetPass(0);
-    //            GL.Begin(GL.LINES);
-    //            GL.Vertex(transform.position);
-    //            GL.Vertex(target.transform.position);
-    //            GL.End();
-    //        }
-    //    }
-    //}
+    protected override void OnRenderObject()
+    {
+        base.OnRenderObject();
+        if (Manager.Instance.debugLines)
+        {
+            if (target)
+            {
+                targetMat.SetPass(0);
+                GL.Begin(GL.LINES);
+                GL.Vertex(transform.position);
+                GL.Vertex(target.transform.position);
+                GL.End();
+            }
+        }
+    }
 }

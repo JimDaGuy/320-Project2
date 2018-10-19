@@ -2345,9 +2345,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1065b6515aa3dc46979532f0f2d48ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardMat: {fileID: 0}
-  rightMat: {fileID: 0}
-  futureMat: {fileID: 0}
+  forwardMat: {fileID: 2100000, guid: c689d3d48089d1d46856c80ddfa19f00, type: 2}
+  rightMat: {fileID: 2100000, guid: 2a6908c3f34c41643b5e52e8232670d3, type: 2}
+  futureMat: {fileID: 2100000, guid: 292200b58da0eac4d8158e2d15e695ea, type: 2}
   direction: {x: 0, y: 0, z: 0}
   position: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
@@ -2359,9 +2359,9 @@ MonoBehaviour:
   reactionDistance: 5
   seekWeight: 100
   wanderWeight: 0
-  avoidObstacleWeight: 0
+  avoidObstacleWeight: 90
   separationWeight: 0
-  targetMat: {fileID: 0}
+  targetMat: {fileID: 2100000, guid: e19e2b40ac80b9c4184264262b0e9954, type: 2}
   target: {fileID: 0}
 --- !u!136 &136395167650145100
 CapsuleCollider:

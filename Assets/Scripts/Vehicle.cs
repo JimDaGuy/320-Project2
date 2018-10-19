@@ -106,55 +106,15 @@ public abstract class Vehicle : MonoBehaviour
         return Flee(targetPos);
     }
 
-    //helper method for obstacle avoidance
-    public Vector3 AvoidObstacle(Vector3 obsPos, float obsRad)
-    {
-        Vector3 vehicleToObstacle = obsPos - gameObject.transform.position;
-        if (Vector3.Dot(vehicleToObstacle, gameObject.transform.forward) < 0) //first check, see if obstacle is behind vehicle, proceed inward if it isn't
-        {
-            return Vector3.zero;
-        }
-        else
-        {
-            if (vehicleToObstacle.sqrMagnitude > Mathf.Pow(reactionDistance, 2)) //second check, see if obstacle is farther than minimum safe distance, proceed inward if it isn't
-            {
-                return Vector3.zero;
-            }
-            else
-            {
-                if (Mathf.Abs(Vector3.Dot(vehicleToObstacle, gameObject.transform.right)) > radius + obsRad) //third check, see if obstacle's "flattened" distance to the vehicle is greater than radii sum of the objects, proceed inward if it isn't
-                {
-                    return Vector3.zero;
-                }
-                else
-                {
-                    if (Vector3.Dot(vehicleToObstacle, gameObject.transform.right) > 0) //positive dot product means the obstacle is on the right of the vehicle, so steer left to avoid
-                    {
-                        Vector3 desiredVelocity = -gameObject.transform.right;
-                        desiredVelocity = desiredVelocity.normalized * maxSpeed;
-                        return desiredVelocity - velocity;
-                    }
-                    else //negative dot product means the obstacle is on the left of the vehicle, so steer right to avoid
-                    {
-                        Vector3 desiredVelocity = gameObject.transform.right;
-                        desiredVelocity = desiredVelocity.normalized * maxSpeed;
-                        return desiredVelocity - velocity;
-                    }
-                }
-            }
-        }
-    }
 
     //helper method for wall avoidance
-    public Vector3 AvoidWall()
+    public Vector3 AvoidObstacles()
     {
         RaycastHit hit = new RaycastHit();
-        int layerMask = 1 << 8; //used to find the "invisible wall" layer that the ray can collide with but objects cannot
-        //check to see if the ray hits an invisible wall
-        if (Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, out hit, 4, layerMask))
+        //check to see if the ray hits anything
+        if (Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, out hit, reactionDistance))
         {
             Vector3 desiredVelocity = hit.normal * 3;
-            wanderRotation = 0; //prevents wander from overcoming the urge to not jump off the building
             // Find a spot in the world along that normal
             return Seek(desiredVelocity + hit.point);
         }
@@ -211,7 +171,7 @@ public abstract class Vehicle : MonoBehaviour
                     }
                     else
                     {
-                        desiredVelocity += AvoidObstacle(neighbor.transform.position, 1) * (1/Mathf.Sqrt(distanceToNeighbor)); //appends a proportional velocity w/ an AvoidObstacle call (which assumes neighbors have a radius of 1)
+                        desiredVelocity += AvoidObstacles() * (1/Mathf.Sqrt(distanceToNeighbor)); //appends a proportional velocity w/ an AvoidObstacle call (which assumes neighbors have a radius of 1)
                     }
                 }
             }
@@ -251,31 +211,31 @@ public abstract class Vehicle : MonoBehaviour
         }
     }
 
-    ////for drawing debug lines in the actual game
-    //protected virtual void OnRenderObject()
-    //{
-    //    if(Manager.Instance.debugLines)
-    //    {
-    //        // forward vector
-    //        forwardMat.SetPass(0);
-    //        GL.Begin(GL.LINES);
-    //        GL.Vertex(transform.position);
-    //        GL.Vertex(transform.position + transform.forward * 2);
-    //        GL.End();
+    //for drawing debug lines in the actual game
+    protected virtual void OnRenderObject()
+    {
+        if (Manager.Instance.debugLines)
+        {
+            // forward vector
+            forwardMat.SetPass(0);
+            GL.Begin(GL.LINES);
+            GL.Vertex(transform.position);
+            GL.Vertex(transform.position + transform.forward * 2);
+            GL.End();
 
-    //        //right vector
-    //        rightMat.SetPass(0);
-    //        GL.Begin(GL.LINES);
-    //        GL.Vertex(transform.position);
-    //        GL.Vertex(transform.position + transform.right * 2);
-    //        GL.End();
+            //right vector
+            rightMat.SetPass(0);
+            GL.Begin(GL.LINES);
+            GL.Vertex(transform.position);
+            GL.Vertex(transform.position + transform.right * 2);
+            GL.End();
 
-    //        //future position vector
-    //        futureMat.SetPass(0);
-    //        GL.Begin(GL.LINES);
-    //        GL.Vertex(transform.position);
-    //        GL.Vertex(transform.position + velocity);
-    //        GL.End();
-    //    }
-    //}
+            //future position vector
+            futureMat.SetPass(0);
+            GL.Begin(GL.LINES);
+            GL.Vertex(transform.position);
+            GL.Vertex(transform.position + velocity);
+            GL.End();
+        }
+    }
 }

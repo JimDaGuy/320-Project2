@@ -22,6 +22,7 @@ public class Manager : MonoBehaviour
     public int startVampires;
     public Vector3 spawnBoxMin;
     public Vector3 spawnBoxMax;
+    public bool debugLines;
 
 
     void Awake()
