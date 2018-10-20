@@ -8,11 +8,12 @@ public class PlayerController : MonoBehaviour
 	public GameObject stakePrefab;
 	public Transform stakeSpawn;
 	public GameObject playerCharacter;
+    public int health;
 
 	// Use this for initialization
 	void Start ()
 	{
-		
+        		
 	}
 	
 	// Update is called once per frame
