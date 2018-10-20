@@ -10,14 +10,23 @@ public class PlayerController : MonoBehaviour
 	public GameObject stakePrefab_c;	// meat
 	public Transform stakeSpawn;
 	public GameObject playerCharacter;
-	public string weaponType;		// can be equal to 'iron' 'wood' or 'meat'
+
+    public enum Weapons {
+        Iron = 1,
+        Wood = 2,
+        Meat = 3
+    };
+    public Weapons currentWeapon;
+    private int numWeapons;
     public int health;
+    public float test;
 
     // Use this for initialization
     void Start ()
 	{
-		weaponType = "iron";
-	}
+        numWeapons = System.Enum.GetNames(typeof(Weapons)).Length;
+        currentWeapon = Weapons.Iron;
+    }
 	
 	// Update is called once per frame
 	void Update () 
@@ -29,56 +38,36 @@ public class PlayerController : MonoBehaviour
 		transform.Rotate(0, xPos, 0);
 		transform.Translate(0, 0, zPos);
 
-		if (Input.GetMouseButtonDown(0)) //Input.GetKeyDown(KeyCode.Tab)
+        // Shooting Input - Left Click
+		if (Input.GetMouseButtonDown(0))
 		{
-			if(weaponType == "iron")
-			{
-				Fire(stakePrefab_a);
-			}
-			else if (weaponType == "wood")
-			{
-				Fire(stakePrefab_b);
-			}
-			else if (weaponType == "meat")
-			{
-				Fire(stakePrefab_c);
-			}
-
+            switch (currentWeapon)
+            {
+                case Weapons.Iron:
+                    Fire(stakePrefab_a);
+                    break;
+                case Weapons.Wood:
+                    Fire(stakePrefab_b);
+                    break;
+                case Weapons.Meat:
+                    Fire(stakePrefab_c);
+                    break;
+                default:
+                    break;
+            }
 		}
 
-		// check if mouse scrollwheel has moved up or down and adjust weapon accordingly
-		if(Input.GetAxisRaw("Mouse ScrollWheel") > 0f || Input.GetButtonDown("ChangeUp"))
-		//if(Input.GetButtonDown("ChangeUp"))
-		{
-			if (weaponType == "iron")
-			{
-				weaponType = "meat";
-			}
-			else if (weaponType == "wood")
-			{
-				weaponType = "iron";
-			}
-			else if (weaponType == "meat")
-			{
-				weaponType = "wood";
-			}
-		}
-		else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0f)
-		//if (Input.GetButtonDown("ChangeDown"))
-		{
-			if (weaponType == "iron")
-			{
-				weaponType = "wood";
-			}
-			else if (weaponType == "wood")
-			{
-				weaponType = "meat";
-			}
-			else if (weaponType == "meat")
-			{
-				weaponType = "iron";
-			}
-		}
+        // Weapon Cycle Input - CapsLock
+        if(Input.GetKeyDown(KeyCode.CapsLock))
+        {
+            CycleWeapons(true);
+        }
+
+        // check if mouse scrollwheel has moved up or down and adjust weapon accordingly
+        if (Input.GetAxisRaw("Mouse ScrollWheel") > 0f || Input.GetButtonDown("ChangeUp"))
+            CycleWeapons(true);
+        else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0f)
+            CycleWeapons(false);
 	}
 
 	void Fire(GameObject stakePrefab)
@@ -97,6 +86,22 @@ public class PlayerController : MonoBehaviour
 		// remove stake after 2 seconds
 		Destroy(stake, 2.0f);
 	}
+
+    void CycleWeapons(bool forward)
+    {
+        int currentIndex = (int)currentWeapon;
+        int increment = (forward) ? 1 : -1;
+
+        currentIndex += increment;
+
+        // Fix out of bounds
+        if (currentIndex < 1)
+            currentIndex = numWeapons;
+        else if (currentIndex > numWeapons)
+            currentIndex = 1;
+
+        currentWeapon = (Weapons)currentIndex;
+    }
 
 	// change which model is displayed on the camera, depending on the current weaponType
 }
