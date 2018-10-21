@@ -1,15 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
 	// variables
-	public GameObject stakePrefab_a;	// wood
-	public GameObject stakePrefab_b;	// silver
-	public GameObject stakePrefab_c;	// meat
-	public Transform stakeSpawn;
+	public GameObject ironStakePrefab;	
+	public GameObject woodStakePrefab;	
+	public GameObject meatStakePrefab;
+
+    public GameObject ironStakeUIPrefab;
+    public GameObject woodStakeUIPrefab;
+    public GameObject meatStakeUIPrefab;
+
+    public Transform stakeSpawn;
 	public GameObject playerCharacter;
+
+    public GameObject heldItemParent;
+    public GameObject heldStake;
+    public GameObject heldStakeUIParent;
+    public GameObject heldStakeUI;
+    public Text heldStakeText;
 
     public enum Weapons {
         Iron = 1,
@@ -44,13 +56,13 @@ public class PlayerController : MonoBehaviour
             switch (currentWeapon)
             {
                 case Weapons.Iron:
-                    Fire(stakePrefab_a);
+                    Fire(ironStakePrefab);
                     break;
                 case Weapons.Wood:
-                    Fire(stakePrefab_b);
+                    Fire(woodStakePrefab);
                     break;
                 case Weapons.Meat:
-                    Fire(stakePrefab_c);
+                    Fire(meatStakePrefab);
                     break;
                 default:
                     break;
@@ -100,6 +112,61 @@ public class PlayerController : MonoBehaviour
             currentIndex = 1;
 
         currentWeapon = (Weapons)currentIndex;
+        UpdateWeaponViews();
+    }
+
+    void UpdateWeaponViews()
+    {
+        Transform prevStakeTransform = heldStake.transform;
+        Transform uiStakeTransform = heldStakeUI.transform;
+        Destroy(heldStake);
+        Destroy(heldStakeUI);
+
+        switch (currentWeapon)
+        {
+            case Weapons.Iron:
+                // Update held item stake
+                GameObject newIronStake = (GameObject)Instantiate(ironStakePrefab, prevStakeTransform.position, prevStakeTransform.rotation);
+                Destroy(newIronStake.GetComponent<Rigidbody>());
+                newIronStake.transform.parent = heldItemParent.transform;
+                heldStake = newIronStake;
+
+                //Update UI Text
+                heldStakeText.text = "Iron Stakes (Zombies)";
+
+                //Update UI Stake
+                GameObject newIronStakeUI = (GameObject)Instantiate(ironStakeUIPrefab, uiStakeTransform.localPosition, uiStakeTransform.localRotation);
+                newIronStakeUI.transform.SetParent(heldStakeUIParent.transform, false);
+                heldStakeUI = newIronStakeUI;
+                break;
+            case Weapons.Wood:
+                GameObject newWoodStake = (GameObject)Instantiate(woodStakePrefab, prevStakeTransform.position, prevStakeTransform.rotation);
+                Destroy(newWoodStake.GetComponent<Rigidbody>());
+                newWoodStake.transform.parent = heldItemParent.transform;
+                heldStake = newWoodStake;
+
+                heldStakeText.text = "Wood Stakes (Vampires)";
+
+                GameObject newWoodStakeUI = (GameObject)Instantiate(woodStakeUIPrefab, uiStakeTransform.localPosition, uiStakeTransform.localRotation);
+                newWoodStakeUI.transform.SetParent(heldStakeUIParent.transform, false);
+                heldStakeUI = newWoodStakeUI;
+                break;
+            case Weapons.Meat:
+                GameObject newMeatStake = (GameObject)Instantiate(meatStakePrefab, prevStakeTransform.position, prevStakeTransform.rotation);
+                Destroy(newMeatStake.GetComponent<Rigidbody>());
+                newMeatStake.transform.parent = heldItemParent.transform;
+                heldStake = newMeatStake;
+
+                heldStakeText.text = "Meat Steaks (Ghosts)";
+
+                GameObject newMeatStakeUI = (GameObject)Instantiate(meatStakeUIPrefab, uiStakeTransform.localPosition, uiStakeTransform.localRotation);
+                newMeatStakeUI.transform.SetParent(heldStakeUIParent.transform, false);
+                heldStakeUI = newMeatStakeUI;
+
+                break;
+            default:
+                break;
+        }
     }
 
 	// change which model is displayed on the camera, depending on the current weaponType
