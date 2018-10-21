@@ -4,3 +4,4 @@ Several assets from the Unity Asset Store were utilized.
 - Nature Starter Kit 2 by Shapes - Some trees
 - Simple Torch by Axel Vaude - Torches
 - Skybox Series Free by Avionx - Skybox
+- Unity Nav Mesh Components - NavMesh
