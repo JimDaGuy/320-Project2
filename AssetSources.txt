@@ -5,3 +5,4 @@ Several assets from the Unity Asset Store were utilized.
 - Simple Torch by Axel Vaude - Torches
 - Skybox Series Free by Avionx - Skybox
 - Unity Nav Mesh Components - NavMesh
+- Keyboard by LushkinR - Keyboard key UI - https://opengameart.org/content/keyboard

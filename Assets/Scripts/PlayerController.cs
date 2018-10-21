@@ -82,7 +82,6 @@ public class PlayerController : MonoBehaviour
 		// add velocity to the stake
 		stake.GetComponent<Rigidbody>().velocity = stake.transform.forward * 20;
 		
-
 		// remove stake after 2 seconds
 		Destroy(stake, 2.0f);
 	}
