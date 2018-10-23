@@ -2362,7 +2362,7 @@ MonoBehaviour:
   avoidObstacleWeight: 90
   separationWeight: 0
   targetMat: {fileID: 2100000, guid: e19e2b40ac80b9c4184264262b0e9954, type: 2}
-  target: {fileID: 0}
+  target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
 --- !u!136 &136395167650145100
 CapsuleCollider:
   m_ObjectHideFlags: 1

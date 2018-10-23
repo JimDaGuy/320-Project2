@@ -20,6 +20,8 @@ public class Manager : MonoBehaviour
     public int score;
     public List<GameObject> vampires;
     public List<GameObject> woodenStakes;
+    public List<GameObject> steaks;
+    public List<GameObject> ironStakes;
     public int startVampires;
     public Vector3 spawnBoxMin;
     public Vector3 spawnBoxMax;

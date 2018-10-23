@@ -3047,8 +3047,11 @@ MonoBehaviour:
   player: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   vampire: {fileID: 1184523553421966, guid: f0bd97bb24ac63842ae567bc740a2af6, type: 2}
   stake: {fileID: 0}
+  score: 0
   vampires: []
-  stakes: []
+  woodenStakes: []
+  steaks: []
+  ironStakes: []
   startVampires: 5
   spawnBoxMin: {x: -10, y: 11, z: -10}
   spawnBoxMax: {x: 10, y: 21, z: 10}
@@ -9982,15 +9985,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a529a0d29a456042b3da364bdebc788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stakePrefab_a: {fileID: 1282459986517426, guid: 0a7c2d4723c15fb4696c4d73ae88dc09,
+  ironStakePrefab: {fileID: 1282459986517426, guid: 0a7c2d4723c15fb4696c4d73ae88dc09,
     type: 2}
-  stakePrefab_b: {fileID: 1530166004133046, guid: 9a8ca4d3eeb327c4b98411f8647513a4,
+  woodStakePrefab: {fileID: 1530166004133046, guid: 64282323ef76f1d499e2750de109fb61,
     type: 2}
-  stakePrefab_c: {fileID: 1353479244426272, guid: 303bce6d2c5db044d8131eac681a40c9,
+  meatStakePrefab: {fileID: 1353479244426272, guid: 303bce6d2c5db044d8131eac681a40c9,
+    type: 2}
+  ironStakeUIPrefab: {fileID: 1103883989604314, guid: cf12efff0854b664d93cc8905caf2708,
+    type: 2}
+  woodStakeUIPrefab: {fileID: 1954130064445316, guid: 2129f3d70e1c5f74b9412ffbca162aec,
+    type: 2}
+  meatStakeUIPrefab: {fileID: 1269893677441850, guid: b6be425a7d0149246885137e267be6f8,
     type: 2}
   stakeSpawn: {fileID: 397109983}
   playerCharacter: {fileID: 1891219950}
-  weaponType: 
+  heldItemParent: {fileID: 0}
+  heldStake: {fileID: 0}
+  heldStakeUIParent: {fileID: 0}
+  heldStakeUI: {fileID: 0}
+  heldStakeText: {fileID: 0}
+  currentWeapon: 0
+  health: 0
+  test: 0
 --- !u!4 &1823839906 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0,
