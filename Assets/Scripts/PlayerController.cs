@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		weaponType = "iron";
+		weaponType = "wood";
 	}
 	
 	// Update is called once per frame
@@ -88,14 +88,16 @@ public class PlayerController : MonoBehaviour
 
 		// create a stake from a bullet prefab
 		var stake = (GameObject)Instantiate(stakePrefab, stakeSpawn.position, stakeRot.rotation);
+        GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().woodenStakes.Add(stake);
 
 		// add velocity to the stake
 		stake.GetComponent<Rigidbody>().velocity = stake.transform.forward * 20;
-		
 
-		// remove stake after 2 seconds
-		Destroy(stake, 2.0f);
-	}
 
-	// change which model is displayed on the camera, depending on the current weaponType
+        // remove stake after 2 seconds
+        GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().woodenStakes.Remove(stake);
+        Destroy(stake, 2.0f);
+    }
+
+    // change which model is displayed on the camera, depending on the current weaponType
 }
