@@ -1858,11 +1858,6 @@ Prefab:
       propertyPath: targetPlayer
       value: 
       objectReference: {fileID: 323208295}
-    - target: {fileID: 195348500000986662, guid: d2cbe0c08a1e76d42b7121989c36c895,
-        type: 2}
-      propertyPath: m_Speed
-      value: 7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2cbe0c08a1e76d42b7121989c36c895, type: 2}
   m_IsPrefabAsset: 0
@@ -2421,15 +2416,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a529a0d29a456042b3da364bdebc788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stakePrefab_a: {fileID: 1282459986517426, guid: 0a7c2d4723c15fb4696c4d73ae88dc09,
+  ironStakePrefab: {fileID: 1282459986517426, guid: 0a7c2d4723c15fb4696c4d73ae88dc09,
     type: 2}
-  stakePrefab_b: {fileID: 1530166004133046, guid: 64282323ef76f1d499e2750de109fb61,
+  woodStakePrefab: {fileID: 1530166004133046, guid: 64282323ef76f1d499e2750de109fb61,
     type: 2}
-  stakePrefab_c: {fileID: 1353479244426272, guid: 303bce6d2c5db044d8131eac681a40c9,
+  meatStakePrefab: {fileID: 1353479244426272, guid: 303bce6d2c5db044d8131eac681a40c9,
+    type: 2}
+  ironStakeUIPrefab: {fileID: 1103883989604314, guid: cf12efff0854b664d93cc8905caf2708,
+    type: 2}
+  woodStakeUIPrefab: {fileID: 1954130064445316, guid: 2129f3d70e1c5f74b9412ffbca162aec,
+    type: 2}
+  meatStakeUIPrefab: {fileID: 1269893677441850, guid: b6be425a7d0149246885137e267be6f8,
     type: 2}
   stakeSpawn: {fileID: 157904247}
   playerCharacter: {fileID: 302653868}
-  heldStake: {fileID: 0}
+  heldItemParent: {fileID: 1031027186}
+  heldStake: {fileID: 1052067674}
+  heldStakeUIParent: {fileID: 1484272496}
+  heldStakeUI: {fileID: 1276603785}
+  heldStakeText: {fileID: 1890010850}
   currentWeapon: 0
   health: 0
   test: 0
@@ -8724,6 +8729,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 1e5c742accdc1824fb01f98f446fa63c,
     type: 2}
   m_PrefabInternal: {fileID: 1045358111}
+--- !u!1 &1052067674 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1282459986517426, guid: 0a7c2d4723c15fb4696c4d73ae88dc09,
+    type: 2}
+  m_PrefabInternal: {fileID: 973909770}
 --- !u!1001 &1055104555
 Prefab:
   m_ObjectHideFlags: 0
@@ -9197,8 +9207,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1120934415}
-  m_LocalRotation: {x: -0.0013462811, y: -0.9803635, z: -0.18970291, w: 0.05383751}
-  m_LocalPosition: {x: -19.05919, y: 1.2921753, z: 207.11926}
+  m_LocalRotation: {x: 0.083684884, y: -0.34949517, z: -0.09329557, w: -0.9285182}
+  m_LocalPosition: {x: -20.921621, y: 5.4434853, z: 188.21985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1313370059}
@@ -10738,6 +10748,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1268547445}
   m_CullTransparentMesh: 0
+--- !u!1 &1276603785 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1103883989604314, guid: cf12efff0854b664d93cc8905caf2708,
+    type: 2}
+  m_PrefabInternal: {fileID: 1147101120}
 --- !u!1001 &1292845263
 Prefab:
   m_ObjectHideFlags: 0
@@ -14163,6 +14178,10 @@ MonoBehaviour:
   controlsCanvas: {fileID: 1596344141}
   controlsFadeDelay: 4
   controlsFadeDuration: 3
+  spawnBoxMin: {x: -50, y: 30, z: -50}
+  spawnBoxMax: {x: 50, y: 30, z: 50}
+  vampire: {fileID: 1190370135055008, guid: f8722ceccd31c1f468f9774310a79cae, type: 2}
+  startVampires: 0
   wtf: 0
 --- !u!4 &1668176886
 Transform:

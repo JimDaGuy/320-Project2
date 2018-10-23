@@ -75,8 +75,9 @@ public class PlayerController : MonoBehaviour
             CycleWeapons(true);
         }
 
+        Debug.Log(Input.GetAxisRaw("Mouse ScrollWheel"));
         // check if mouse scrollwheel has moved up or down and adjust weapon accordingly
-        if (Input.GetAxisRaw("Mouse ScrollWheel") > 0f || Input.GetButtonDown("ChangeUp"))
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetButtonDown("ChangeUp"))
             CycleWeapons(true);
         else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0f)
             CycleWeapons(false);
@@ -90,12 +91,10 @@ public class PlayerController : MonoBehaviour
 
 		// create a stake from a bullet prefab
 		var stake = (GameObject)Instantiate(stakePrefab, stakeSpawn.position, stakeRot.rotation);
-        GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().woodenStakes.Add(stake);
 
 		// add velocity to the stake
 		stake.GetComponent<Rigidbody>().velocity = stake.transform.forward * 20;
         // remove stake after 2 seconds
-        GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().woodenStakes.Remove(stake);
         Destroy(stake, 2.0f);
     }
 

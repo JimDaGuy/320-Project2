@@ -10,12 +10,23 @@ public class MainSceneManager : MonoBehaviour
     public GameObject controlsCanvas;
     public float controlsFadeDelay;
     public float controlsFadeDuration;
+    public Vector3 spawnBoxMin;
+    public Vector3 spawnBoxMax;
+    public GameObject vampire;
+    public int startVampires;
     public float wtf;
 
     // Use this for initialization
     void Start()
     {
-
+        for (int i = 0; i < startVampires; i++)
+        {
+            Instantiate(vampire, new Vector3(Random.Range(spawnBoxMin.x, spawnBoxMax.x), Random.Range(spawnBoxMin.y, spawnBoxMax.y), Random.Range(spawnBoxMin.z, spawnBoxMax.z)), new Quaternion());
+        }
+        //foreach (GameObject vampireObj in GameObject.FindGameObjectsWithTag("VampireObj"))
+        //{
+        //    vampires.Add(vampireObj);
+        //}
     }
 
     // Update is called once per frame

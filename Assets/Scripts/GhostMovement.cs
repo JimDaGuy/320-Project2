@@ -19,4 +19,18 @@ public class GhostMovement : MonoBehaviour {
         destination = targetPlayer.transform.position;
         agent.SetDestination(destination);
 	}
+
+    //collision detection with wooden stakes
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.name == "Stake_Wood(Clone)")
+        {
+            //GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().woodenStakes.Remove(collision.gameObject);
+            Destroy(collision.gameObject);
+            //GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().score++;
+            //GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().vampires.Remove(gameObject);
+            Destroy(gameObject);
+        }
+    }
 }
