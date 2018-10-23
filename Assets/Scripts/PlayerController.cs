@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     void Start ()
 	{
         numWeapons = System.Enum.GetNames(typeof(Weapons)).Length;
-        currentWeapon = Weapons.Iron;
+        currentWeapon = Weapons.Wood;
     }
 	
 	// Update is called once per frame
@@ -90,13 +90,14 @@ public class PlayerController : MonoBehaviour
 
 		// create a stake from a bullet prefab
 		var stake = (GameObject)Instantiate(stakePrefab, stakeSpawn.position, stakeRot.rotation);
+        GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().woodenStakes.Add(stake);
 
 		// add velocity to the stake
 		stake.GetComponent<Rigidbody>().velocity = stake.transform.forward * 20;
-		
-		// remove stake after 2 seconds
-		Destroy(stake, 2.0f);
-	}
+        // remove stake after 2 seconds
+        GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().woodenStakes.Remove(stake);
+        Destroy(stake, 2.0f);
+    }
 
     void CycleWeapons(bool forward)
     {
@@ -168,6 +169,4 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
-
-	// change which model is displayed on the camera, depending on the current weaponType
 }
