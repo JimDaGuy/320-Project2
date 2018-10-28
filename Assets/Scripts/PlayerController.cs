@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     public GameObject heldStakeUI;
     public Text heldStakeText;
 
+    public GameObject SceneManager;
+    public string stateString;
+
     public enum Weapons {
         Iron = 1,
         Wood = 2,
@@ -32,68 +35,66 @@ public class PlayerController : MonoBehaviour
     private int numWeapons;
     public int health;
     public float test;
-
-    // Use this for initialization
+    
     void Start ()
 	{
+        stateString = SceneManager.GetComponent<MainSceneManager>().currentState.ToString();
         numWeapons = System.Enum.GetNames(typeof(Weapons)).Length;
-        currentWeapon = Weapons.Wood;
+        currentWeapon = Weapons.Iron;
+        health = 250;
     }
 	
-	// Update is called once per frame
 	void Update () 
 	{
-		float xPos = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
-		float yPos = Input.GetAxis("Vertical") * Time.deltaTime * 150.0f;
-		float zPos = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
+        stateString = SceneManager.GetComponent<MainSceneManager>().currentState.ToString();
 
-		transform.Rotate(0, xPos, 0);
-		transform.Translate(0, 0, zPos);
-
-        // Shooting Input - Left Click
-		if (Input.GetMouseButtonDown(0))
-		{
-            switch (currentWeapon)
-            {
-                case Weapons.Iron:
-                    Fire(ironStakePrefab);
-                    break;
-                case Weapons.Wood:
-                    Fire(woodStakePrefab);
-                    break;
-                case Weapons.Meat:
-                    Fire(meatStakePrefab);
-                    break;
-                default:
-                    break;
-            }
-		}
-
-        // Weapon Cycle Input - CapsLock
-        if(Input.GetKeyDown(KeyCode.CapsLock))
+        if (stateString == "Ingame")
         {
-            CycleWeapons(true);
-        }
+            float xPos = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
+            float yPos = Input.GetAxis("Vertical") * Time.deltaTime * 150.0f;
+            float zPos = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
 
-        Debug.Log(Input.GetAxisRaw("Mouse ScrollWheel"));
-        // check if mouse scrollwheel has moved up or down and adjust weapon accordingly
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetButtonDown("ChangeUp"))
-            CycleWeapons(true);
-        else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0f)
-            CycleWeapons(false);
+            transform.Rotate(0, xPos, 0);
+            transform.Translate(0, 0, zPos);
+
+            // Shooting Input - Left Click
+            if (Input.GetMouseButtonDown(0))
+            {
+                switch (currentWeapon)
+                {
+                    case Weapons.Iron:
+                        Fire(ironStakePrefab);
+                        break;
+                    case Weapons.Wood:
+                        Fire(woodStakePrefab);
+                        break;
+                    case Weapons.Meat:
+                        Fire(meatStakePrefab);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            // Cycle weapons on scroll
+            if (Input.mouseScrollDelta.y > 0f || Input.GetButtonDown("ChangeUp"))
+                CycleWeapons(true);
+            else if (Input.mouseScrollDelta.y < 0f)
+                CycleWeapons(false);
+        }
 	}
 
-	void Fire(GameObject stakePrefab)
-	{
-		// create a transform from the stakeSpawn and the playerCharacter
-		Transform stakeRot = stakeSpawn;
-		stakeRot.rotation = playerCharacter.transform.rotation;
+    void Fire(GameObject stakePrefab)
+    {
+        // create a transform from the stakeSpawn and the playerCharacter
+        Transform stakeRot = stakeSpawn;
+        stakeRot.rotation = playerCharacter.transform.rotation;
 
-		// create a stake from a bullet prefab
-		var stake = (GameObject)Instantiate(stakePrefab, stakeSpawn.position, stakeRot.rotation);
+        // create a stake from a bullet prefab
+        var stake = (GameObject)Instantiate(stakePrefab, stakeSpawn.position, stakeRot.rotation);
 
-		// add velocity to the stake
-		stake.GetComponent<Rigidbody>().velocity = stake.transform.forward * 20;
+        // add velocity to the stake
+        stake.GetComponent<Rigidbody>().velocity = stake.transform.forward * 20;
         // remove stake after 2 seconds
         Destroy(stake, 2.0f);
     }
