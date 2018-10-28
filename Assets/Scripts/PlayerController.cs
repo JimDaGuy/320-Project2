@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     public Weapons currentWeapon;
     private int numWeapons;
     public int health;
-    public float test;
+    public int score;
     
     void Start ()
 	{
@@ -167,6 +167,18 @@ public class PlayerController : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (stateString == "Ingame")
+        {
+            // Kill player on collision with water
+            if (other.gameObject.name == "Water4Advanced")
+            {
+                health = 0;
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainSceneManager : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class MainSceneManager : MonoBehaviour
     public GameObject player;
     public UnityStandardAssets.Characters.FirstPerson.FirstPersonController controller;
     public float playerHealth;
+
+    public Text scoreText;
 
     // Use this for initialization
     void Start()
@@ -57,6 +60,10 @@ public class MainSceneManager : MonoBehaviour
                     weaponCanvas.SetActive(false);
 
                     deathCanvas.SetActive(true);
+                    scoreText.text = "Score: " + player.GetComponent<PlayerController>().score;
+
+                    controller.enabled = false;
+
                     currentState = GameStates.Ended;
                     Time.timeScale = 0;
                 }
@@ -79,7 +86,7 @@ public class MainSceneManager : MonoBehaviour
                 }
 
                 // Pause game on P pressed
-                if (Input.GetKeyDown(KeyCode.P))
+                if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
                 {
                     currentState = GameStates.Paused;
 
@@ -136,6 +143,11 @@ public class MainSceneManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     Time.timeScale = 1;
+
+                    // Enable Cursor
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+
                     SceneManager.LoadScene(0);
                 }
 

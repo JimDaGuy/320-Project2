@@ -6,3 +6,4 @@ Several assets from the Unity Asset Store were utilized.
 - Skybox Series Free by Avionx - Skybox
 - Unity Nav Mesh Components - NavMesh
 - Keyboard by LushkinR - Keyboard key UI - https://opengameart.org/content/keyboard
+- Heart in UI taken from Open Game Art - https://opengameart.org/content/heart-3
