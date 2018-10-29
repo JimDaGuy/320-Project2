@@ -39,9 +39,9 @@ public class PlayerController : MonoBehaviour
 	public int health;
 	public int score;
 
-	private float ironFireTime = 2.0f;
+	private float ironFireTime = 0.5f;
 	private float woodFireTime = 0.5f;
-	private float meatFireTime = 1.0f;
+	private float meatFireTime = 0.5f;
 
 	void Start ()
 	{
@@ -62,12 +62,12 @@ public class PlayerController : MonoBehaviour
 	        float xPos = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
 	        float yPos = Input.GetAxis("Vertical") * Time.deltaTime * 150.0f;
 	        float zPos = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
-	
+
 	        transform.Rotate(0, xPos, 0);
 	        transform.Translate(0, 0, zPos);
-	
-	        // Shooting Input - Left Click
-	        if (Input.GetMouseButtonDown(0))
+
+            // Shooting Input - Left Click
+            if (Input.GetMouseButton(0))
 	        {
 	            switch (currentWeapon)
 	            {
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
 	        }
 	
 	        // Cycle weapons on scroll
-	        if (Input.mouseScrollDelta.y > 0f || Input.GetButtonDown("ChangeUp"))
+	        if (Input.mouseScrollDelta.y > 0f)
 	            CycleWeapons(true);
 	        else if (Input.mouseScrollDelta.y < 0f)
 	            CycleWeapons(false);
@@ -144,12 +144,14 @@ public class PlayerController : MonoBehaviour
 	        case Weapons.Iron:
 	            // Update held item stake
 	            GameObject newIronStake = (GameObject)Instantiate(ironStakePrefab, prevStakeTransform.position, prevStakeTransform.rotation);
-	            Destroy(newIronStake.GetComponent<Rigidbody>());
+                newIronStake.gameObject.GetComponentInChildren<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                Destroy(newIronStake.GetComponent<Rigidbody>());
 	            newIronStake.transform.parent = heldItemParent.transform;
-	            heldStake = newIronStake;
-	
-	            //Update UI Text
-	            heldStakeText.text = "Iron Stakes (Zombies)";
+                heldStake = newIronStake;
+
+
+                //Update UI Text
+                heldStakeText.text = "Iron Stakes (Zombies)";
 	
 	            //Update UI Stake
 	            GameObject newIronStakeUI = (GameObject)Instantiate(ironStakeUIPrefab, uiStakeTransform.localPosition, uiStakeTransform.localRotation);
@@ -158,11 +160,12 @@ public class PlayerController : MonoBehaviour
 	            break;
 	        case Weapons.Wood:
 	            GameObject newWoodStake = (GameObject)Instantiate(woodStakePrefab, prevStakeTransform.position, prevStakeTransform.rotation);
-	            Destroy(newWoodStake.GetComponent<Rigidbody>());
+                newWoodStake.gameObject.GetComponentInChildren<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                Destroy(newWoodStake.GetComponent<Rigidbody>());
 	            newWoodStake.transform.parent = heldItemParent.transform;
-	            heldStake = newWoodStake;
-	
-	            heldStakeText.text = "Wood Stakes (Vampires)";
+                heldStake = newWoodStake;
+
+                heldStakeText.text = "Wood Stakes (Vampires)";
 	
 	            GameObject newWoodStakeUI = (GameObject)Instantiate(woodStakeUIPrefab, uiStakeTransform.localPosition, uiStakeTransform.localRotation);
 	            newWoodStakeUI.transform.SetParent(heldStakeUIParent.transform, false);
@@ -170,11 +173,12 @@ public class PlayerController : MonoBehaviour
 	            break;
 	        case Weapons.Meat:
 	            GameObject newMeatStake = (GameObject)Instantiate(meatStakePrefab, prevStakeTransform.position, prevStakeTransform.rotation);
-	            Destroy(newMeatStake.GetComponent<Rigidbody>());
+                newMeatStake.gameObject.GetComponentInChildren<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                Destroy(newMeatStake.GetComponent<Rigidbody>());
 	            newMeatStake.transform.parent = heldItemParent.transform;
-	            heldStake = newMeatStake;
-	
-	            heldStakeText.text = "Meat Steaks (Ghosts)";
+                heldStake = newMeatStake;
+
+                heldStakeText.text = "Meat Steaks (Ghosts)";
 	
 	            GameObject newMeatStakeUI = (GameObject)Instantiate(meatStakeUIPrefab, uiStakeTransform.localPosition, uiStakeTransform.localRotation);
 	            newMeatStakeUI.transform.SetParent(heldStakeUIParent.transform, false);

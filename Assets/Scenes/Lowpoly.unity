@@ -9255,6 +9255,16 @@ Prefab:
       propertyPath: m_Mass
       value: 0.0000001
       objectReference: {fileID: 0}
+    - target: {fileID: 23744891530578644, guid: 0a7c2d4723c15fb4696c4d73ae88dc09,
+        type: 2}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136350523175224382, guid: 0a7c2d4723c15fb4696c4d73ae88dc09,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 54969596045737156, guid: 0a7c2d4723c15fb4696c4d73ae88dc09, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 0a7c2d4723c15fb4696c4d73ae88dc09, type: 2}
@@ -10667,8 +10677,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1120934415}
-  m_LocalRotation: {x: -0.00836239, y: -0.9645631, z: -0.23521611, w: 0.11925466}
-  m_LocalPosition: {x: -7.9362106, y: 4.0138397, z: 230.7535}
+  m_LocalRotation: {x: 0.04150082, y: 0.5992315, z: 0.13692732, w: -0.78768665}
+  m_LocalPosition: {x: 920.9482, y: -371.19836, z: -59.99559}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1313370059}
