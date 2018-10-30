@@ -10,6 +10,7 @@ public class VampireMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        targetPlayer = GameObject.FindGameObjectWithTag("Player");
         destination = targetPlayer.transform.position;
         agent.SetDestination(targetPlayer.transform.position);
 	}
@@ -23,7 +24,6 @@ public class VampireMovement : MonoBehaviour {
     //collision detection with wooden stakes
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.name == "Stake_Wood(Clone)")
         {
             Destroy(collision.gameObject);

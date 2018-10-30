@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
 	public GameObject heldStakeUIParent;
 	public GameObject heldStakeUI;
 	public Text heldStakeText;
+	public Text scoreText;
+
+    public GameObject healthSlider;
 	
 	public GameObject SceneManager;
 	public string stateString;
@@ -48,7 +51,8 @@ public class PlayerController : MonoBehaviour
 	    stateString = SceneManager.GetComponent<MainSceneManager>().currentState.ToString();
 	    numWeapons = System.Enum.GetNames(typeof(Weapons)).Length;
 	    currentWeapon = Weapons.Iron;
-	    health = 5;
+        healthSlider = GameObject.FindGameObjectWithTag("HealthSlider");
+        health = 100;
 		
 		lastFire = 0;
 	}
@@ -56,7 +60,8 @@ public class PlayerController : MonoBehaviour
 	void Update () 
 	{
 	    stateString = SceneManager.GetComponent<MainSceneManager>().currentState.ToString();
-	
+        scoreText.text = "Score: " + score;
+
 	    if (stateString == "Ingame")
 	    {
 	        float xPos = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
@@ -200,6 +205,12 @@ public class PlayerController : MonoBehaviour
 	            health = 0;
 	        }
 
+            // decrement player health when a ghost or vampire is "hitting" them
+            if (other.gameObject.name == "Ghost" || other.gameObject.name == "Ghost(Clone)" || other.gameObject.name == "Vampire" || other.gameObject.name == "Vampire(Clone)")
+            {
+                health--;
+                healthSlider.GetComponent<Slider>().value = health;
+            }
         }
 	}
 
@@ -211,6 +222,7 @@ public class PlayerController : MonoBehaviour
             if (other.gameObject.name == "Ghost" || other.gameObject.name == "Ghost(Clone)" || other.gameObject.name == "Vampire" || other.gameObject.name == "Vampire(Clone)")
             {
                 health--;
+                healthSlider.GetComponent<Slider>().value = health;
             }
         }
     }

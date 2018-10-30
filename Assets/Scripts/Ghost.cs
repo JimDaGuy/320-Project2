@@ -54,11 +54,23 @@ public class Ghost : Vehicle
     //collision detection with wooden stakes
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "Steak(Clone)")
+        if (collision.gameObject.name == "Steak(Clone)")
         {
             Destroy(collision.gameObject);
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().score++;
             Destroy(gameObject);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // decrement player health when a ghost or vampire is "hitting" them
+            if (other.transform.parent != null && other.transform.parent.gameObject.tag == "Meat")
+            {
+            Destroy(other.gameObject);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().score++;
+            Destroy(gameObject);
+        }
+        
     }
 }

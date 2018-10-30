@@ -9,6 +9,7 @@ TagManager:
   - Iron
   - Wood
   - Meat
+  - HealthSlider
   layers:
   - Default
   - TransparentFX

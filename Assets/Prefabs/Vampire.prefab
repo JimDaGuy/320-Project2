@@ -1322,7 +1322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095ae086e0910b4448bceb55ffece9ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPlayer: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+  targetPlayer: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   agent: {fileID: 195473714582157588}
 --- !u!195 &195473714582157588
