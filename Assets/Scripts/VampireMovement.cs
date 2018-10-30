@@ -21,14 +21,15 @@ public class VampireMovement : MonoBehaviour {
         agent.SetDestination(destination);
 	}
 
-    //collision detection with wooden stakes
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.name == "Stake_Wood(Clone)")
+        // decrement player health when a ghost or vampire is "hitting" them
+        if (other.transform.parent != null && other.transform.parent.gameObject.tag == "Wood")
         {
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().score++;
             Destroy(gameObject);
         }
+
     }
 }

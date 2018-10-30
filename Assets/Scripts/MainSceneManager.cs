@@ -25,7 +25,10 @@ public class MainSceneManager : MonoBehaviour
     public GameObject ghost;
     public int startVampires;
     public int startGhosts;
+    public float timeBetweenGhostSpawns = 5.0f;
     private float ghostSpawnTimer = 0.0f;
+    public float timeBetweenVampireSpawns = 5.0f;
+    private float vampireSpawnTimer = 0.0f;
 
     public GameObject player;
     public UnityStandardAssets.Characters.FirstPerson.FirstPersonController controller;
@@ -118,10 +121,13 @@ public class MainSceneManager : MonoBehaviour
                     Instantiate(ghost, new Vector3(Random.Range(ghostSpawnBoxMin.x, ghostSpawnBoxMax.x), Random.Range(ghostSpawnBoxMin.y, ghostSpawnBoxMax.y), Random.Range(ghostSpawnBoxMin.z, ghostSpawnBoxMax.z)), new Quaternion());
                     ghostSpawnTimer = 0.0f;
                 }
-                else
+                else if(vampireSpawnTimer > timeBetweenVampireSpawns)
                 {
-                    ghostSpawnTimer += Time.deltaTime;
+                    Instantiate(vampire, new Vector3(Random.Range(vampireSpawnBoxMin.x, vampireSpawnBoxMax.x), Random.Range(vampireSpawnBoxMin.y, vampireSpawnBoxMax.y), Random.Range(vampireSpawnBoxMin.z, vampireSpawnBoxMax.z)), new Quaternion());
+                    vampireSpawnTimer = 0.0f;
                 }
+                ghostSpawnTimer += Time.deltaTime;
+                vampireSpawnTimer += Time.deltaTime;
 
                 break;
             case GameStates.Paused:
