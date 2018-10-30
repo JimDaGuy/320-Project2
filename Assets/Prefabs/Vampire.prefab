@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 195473714582157588}
   - component: {fileID: 114991642821343408}
   - component: {fileID: 65098810292635136}
+  - component: {fileID: 54671563901527554}
   m_Layer: 14
   m_Name: Vampire
   m_TagString: Untagged
@@ -1283,6 +1284,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1109719189071760}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54671563901527554
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1190370135055008}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65098810292635136
 BoxCollider:
   m_ObjectHideFlags: 1

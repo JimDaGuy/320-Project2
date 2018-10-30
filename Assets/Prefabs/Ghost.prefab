@@ -19,9 +19,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4563310584432268}
-  - component: {fileID: 195348500000986662}
-  - component: {fileID: 114888113842581736}
   - component: {fileID: 65481586544107078}
+  - component: {fileID: 114956101337644828}
   m_Layer: 14
   m_Name: Ghost
   m_TagString: Untagged
@@ -998,12 +997,12 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1071292607296154}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.85, y: 1.125, z: 0.61}
   m_Center: {x: 0, y: 0.575, z: 0}
---- !u!114 &114888113842581736
+--- !u!114 &114956101337644828
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1011,30 +1010,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1071292607296154}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 095ae086e0910b4448bceb55ffece9ab, type: 3}
+  m_Script: {fileID: 11500000, guid: e1065b6515aa3dc46979532f0f2d48ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPlayer: {fileID: 0}
-  destination: {x: 0, y: 0, z: 0}
-  agent: {fileID: 195348500000986662}
---- !u!195 &195348500000986662
-NavMeshAgent:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1071292607296154}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 7
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1.25
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  forwardMat: {fileID: 2100000, guid: 8048b5de5d2591a40ba6b74ebfe3742c, type: 2}
+  rightMat: {fileID: 2100000, guid: 82f70d1ae1d90d2449b5faad9e20a9b9, type: 2}
+  futureMat: {fileID: 2100000, guid: 2a6908c3f34c41643b5e52e8232670d3, type: 2}
+  direction: {x: 0, y: 0, z: 0}
+  position: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
+  maxSpeed: 5
+  acceleration: {x: 0, y: 0, z: 0}
+  mass: 5
+  maxForce: 100
+  radius: 0.5
+  reactionDistance: 5
+  seekWeight: 100
+  wanderWeight: 50
+  avoidObstacleWeight: 90
+  separationWeight: 0
+  targetMat: {fileID: 2100000, guid: 292200b58da0eac4d8158e2d15e695ea, type: 2}
+  target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}

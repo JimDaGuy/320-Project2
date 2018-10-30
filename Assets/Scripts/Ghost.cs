@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vampire : Vehicle
+public class Ghost : Vehicle
 {
 
     //attributes
@@ -35,31 +35,29 @@ public class Vampire : Vehicle
         ApplyForce(ultimateForce);
     }
 
-    protected override void OnRenderObject()
-    {
-        base.OnRenderObject();
-        if (Manager.Instance.debugLines)
-        {
-            if (target)
-            {
-                targetMat.SetPass(0);
-                GL.Begin(GL.LINES);
-                GL.Vertex(transform.position);
-                GL.Vertex(target.transform.position);
-                GL.End();
-            }
-        }
-    }
+    //protected override void OnRenderObject()
+    //{
+    //    base.OnRenderObject();
+    //    if (Manager.Instance.debugLines)
+    //    {
+    //        if (target)
+    //        {
+    //            targetMat.SetPass(0);
+    //            GL.Begin(GL.LINES);
+    //            GL.Vertex(transform.position);
+    //            GL.Vertex(target.transform.position);
+    //            GL.End();
+    //        }
+    //    }
+    //}
 
     //collision detection with wooden stakes
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "Stake_Wood(Clone)")
+        if(collision.gameObject.name == "Steak(Clone)")
         {
-            GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().woodenStakes.Remove(collision.gameObject);
             Destroy(collision.gameObject);
-            GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().score++;
-            GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().vampires.Remove(gameObject);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().score++;
             Destroy(gameObject);
         }
     }

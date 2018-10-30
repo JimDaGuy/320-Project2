@@ -2336,6 +2336,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 114956101337644828, guid: d2cbe0c08a1e76d42b7121989c36c895,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 323208295}
     - target: {fileID: 114888113842581736, guid: d2cbe0c08a1e76d42b7121989c36c895,
         type: 2}
       propertyPath: targetPlayer
@@ -9595,6 +9600,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_IsPrefabAsset: 0
@@ -10677,8 +10686,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1120934415}
-  m_LocalRotation: {x: 0.04150082, y: 0.5992315, z: 0.13692732, w: -0.78768665}
-  m_LocalPosition: {x: 920.9482, y: -371.19836, z: -59.99559}
+  m_LocalRotation: {x: 0.06824327, y: -0.82601726, z: -0.2641041, w: -0.49324176}
+  m_LocalPosition: {x: -37.040237, y: 0.60960007, z: 202.22032}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1313370059}
@@ -16394,10 +16403,14 @@ MonoBehaviour:
   weaponCanvas: {fileID: 915659928}
   deathCanvas: {fileID: 170931673}
   pauseCanvas: {fileID: 1402004363}
-  spawnBoxMin: {x: -50, y: 30, z: -50}
-  spawnBoxMax: {x: 50, y: 30, z: 50}
+  ghostSpawnBoxMin: {x: -50, y: 30, z: -50}
+  ghostSpawnBoxMax: {x: 50, y: 30, z: 50}
+  vampireSpawnBoxMin: {x: -30, y: 10, z: -10}
+  vampireSpawnBoxMax: {x: -21, y: 10, z: 6}
   vampire: {fileID: 1190370135055008, guid: f8722ceccd31c1f468f9774310a79cae, type: 2}
-  startVampires: 0
+  ghost: {fileID: 1071292607296154, guid: d2cbe0c08a1e76d42b7121989c36c895, type: 2}
+  startVampires: 5
+  startGhosts: 10
   player: {fileID: 323208295}
   controller: {fileID: 323208299}
   playerHealth: 0

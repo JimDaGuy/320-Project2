@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class GhostMovement : MonoBehaviour {
+public class VampireMovement : MonoBehaviour {
     public GameObject targetPlayer;
     public Vector3 destination;
     public NavMeshAgent agent;
@@ -26,10 +26,8 @@ public class GhostMovement : MonoBehaviour {
         Debug.Log(collision.gameObject.name);
         if (collision.gameObject.name == "Stake_Wood(Clone)")
         {
-            //GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().woodenStakes.Remove(collision.gameObject);
             Destroy(collision.gameObject);
-            //GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().score++;
-            //GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().vampires.Remove(gameObject);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().score++;
             Destroy(gameObject);
         }
     }

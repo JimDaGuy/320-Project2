@@ -17,10 +17,15 @@ public class MainSceneManager : MonoBehaviour
     public GameObject deathCanvas;
     public GameObject pauseCanvas;
 
-    public Vector3 spawnBoxMin;
-    public Vector3 spawnBoxMax;
+    public Vector3 ghostSpawnBoxMin;
+    public Vector3 ghostSpawnBoxMax;
+    public Vector3 vampireSpawnBoxMin;
+    public Vector3 vampireSpawnBoxMax;
     public GameObject vampire;
+    public GameObject ghost;
     public int startVampires;
+    public int startGhosts;
+    private float ghostSpawnTimer = 0.0f;
 
     public GameObject player;
     public UnityStandardAssets.Characters.FirstPerson.FirstPersonController controller;
@@ -36,7 +41,11 @@ public class MainSceneManager : MonoBehaviour
 
         for (int i = 0; i < startVampires; i++)
         {
-            Instantiate(vampire, new Vector3(Random.Range(spawnBoxMin.x, spawnBoxMax.x), Random.Range(spawnBoxMin.y, spawnBoxMax.y), Random.Range(spawnBoxMin.z, spawnBoxMax.z)), new Quaternion());
+            Instantiate(vampire, new Vector3(Random.Range(vampireSpawnBoxMin.x, vampireSpawnBoxMax.x), Random.Range(vampireSpawnBoxMin.y, vampireSpawnBoxMax.y), Random.Range(vampireSpawnBoxMin.z, vampireSpawnBoxMax.z)), new Quaternion());
+        }
+        for (int i = 0; i < startGhosts; i++)
+        {
+            Instantiate(ghost, new Vector3(Random.Range(ghostSpawnBoxMin.x, ghostSpawnBoxMax.x), Random.Range(ghostSpawnBoxMin.y, ghostSpawnBoxMax.y), Random.Range(ghostSpawnBoxMin.z, ghostSpawnBoxMax.z)), new Quaternion());
         }
         //foreach (GameObject vampireObj in GameObject.FindGameObjectsWithTag("VampireObj"))
         //{
@@ -101,6 +110,17 @@ public class MainSceneManager : MonoBehaviour
                     // Enable Cursor
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
+                }
+
+                //add a ghost every five seconds
+                if (ghostSpawnTimer > 5.0f)
+                {
+                    Instantiate(ghost, new Vector3(Random.Range(ghostSpawnBoxMin.x, ghostSpawnBoxMax.x), Random.Range(ghostSpawnBoxMin.y, ghostSpawnBoxMax.y), Random.Range(ghostSpawnBoxMin.z, ghostSpawnBoxMax.z)), new Quaternion());
+                    ghostSpawnTimer = 0.0f;
+                }
+                else
+                {
+                    ghostSpawnTimer += Time.deltaTime;
                 }
 
                 break;

@@ -211,31 +211,31 @@ public abstract class Vehicle : MonoBehaviour
         }
     }
 
-    //for drawing debug lines in the actual game
-    protected virtual void OnRenderObject()
-    {
-        if (Manager.Instance.debugLines)
-        {
-            // forward vector
-            forwardMat.SetPass(0);
-            GL.Begin(GL.LINES);
-            GL.Vertex(transform.position);
-            GL.Vertex(transform.position + transform.forward * 2);
-            GL.End();
+    ////for drawing debug lines in the actual game
+    //protected virtual void OnRenderObject()
+    //{
+    //    if (Manager.Instance.debugLines)
+    //    {
+    //        // forward vector
+    //        forwardMat.SetPass(0);
+    //        GL.Begin(GL.LINES);
+    //        GL.Vertex(transform.position);
+    //        GL.Vertex(transform.position + transform.forward * 2);
+    //        GL.End();
 
-            //right vector
-            rightMat.SetPass(0);
-            GL.Begin(GL.LINES);
-            GL.Vertex(transform.position);
-            GL.Vertex(transform.position + transform.right * 2);
-            GL.End();
+    //        //right vector
+    //        rightMat.SetPass(0);
+    //        GL.Begin(GL.LINES);
+    //        GL.Vertex(transform.position);
+    //        GL.Vertex(transform.position + transform.right * 2);
+    //        GL.End();
 
-            //future position vector
-            futureMat.SetPass(0);
-            GL.Begin(GL.LINES);
-            GL.Vertex(transform.position);
-            GL.Vertex(transform.position + velocity);
-            GL.End();
-        }
-    }
+    //        //future position vector
+    //        futureMat.SetPass(0);
+    //        GL.Begin(GL.LINES);
+    //        GL.Vertex(transform.position);
+    //        GL.Vertex(transform.position + velocity);
+    //        GL.End();
+    //    }
+    //}
 }

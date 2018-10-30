@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 	    stateString = SceneManager.GetComponent<MainSceneManager>().currentState.ToString();
 	    numWeapons = System.Enum.GetNames(typeof(Weapons)).Length;
 	    currentWeapon = Weapons.Iron;
-	    health = 250;
+	    health = 5;
 		
 		lastFire = 0;
 	}
@@ -199,6 +199,19 @@ public class PlayerController : MonoBehaviour
 	        {
 	            health = 0;
 	        }
-	    }
+
+        }
 	}
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (stateString == "Ingame")
+        {
+            // decrement player health when a ghost or vampire is "hitting" them
+            if (other.gameObject.name == "Ghost" || other.gameObject.name == "Ghost(Clone)" || other.gameObject.name == "Vampire" || other.gameObject.name == "Vampire(Clone)")
+            {
+                health--;
+            }
+        }
+    }
 }
